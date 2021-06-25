@@ -7,6 +7,16 @@
     <div class="container-scroller">
       <div class="main-panel">
         <div class="container">
+          @{
+            try
+            {
+              var articles = IndexModel.GetArticles(); // First search: Latest News *? topic
+            }
+            catch (System.Exception ex)
+            {
+               // TODO
+            }
+          }
           <div class="banner-top-thumb-wrap">
             <div class="d-lg-flex justify-content-between align-items-center">
               <div class="d-flex justify-content-between  mb-3 mb-lg-0">

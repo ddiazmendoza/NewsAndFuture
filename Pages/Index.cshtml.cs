@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using NewsAndFuture.Models;
 
 namespace NewsAndFuture.Pages
 {
@@ -20,6 +21,12 @@ namespace NewsAndFuture.Pages
         public void OnGet()
         {
 
+        }
+        public static async Task<List<Article>> GetArticles(string search, string lang) 
+        {
+            var articles = await APIConnection.EstablishConnectionAsync("amlo", "es");
+            var _art = articles.Articles;
+            return _art;
         }
     }
 }
