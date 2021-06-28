@@ -29,5 +29,6 @@ namespace NewsAndFuture.Pages
             var _art = articles.Articles;
             return _art;
         }
+       
     }
 }

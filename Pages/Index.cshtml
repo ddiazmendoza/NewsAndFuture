@@ -2,67 +2,60 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+   
+    var articles = await IndexModel.GetArticles("amlo", "es");  
+    
 }
 <body>
     <div class="container-scroller">
       <div class="main-panel">
         <div class="container">
-          @{
-            try
-            {
-              var articles = await GetArticles("amlo", "es");
-            }
-            catch (System.Exception ex)
-            {
-              System.Console.WriteLine(ex.Message);
-            }
-          }
           <div class="banner-top-thumb-wrap">
             <div class="d-lg-flex justify-content-between align-items-center">
               <div class="d-flex justify-content-between  mb-3 mb-lg-0">
                 <div>
                   <img
-                    src="assets/images/dashboard/star-magazine-1.jpg"
-                    alt="thumb"
+                    src="@articles[0].UrlToImage"
+                    alt="articles[0].image"
                     class="banner-top-thumb"
                   />
                 </div>
                 <h5 class="m-0 font-weight-bold">
-                  The morning after: What people
+                  @articles[0].Title
                 </h5>
               </div>
               <div class="d-flex justify-content-between mb-3 mb-lg-0">
                 <div>
                   <img
-                    src="assets/images/dashboard/star-magazine-2.jpg"
-                    alt="thumb"
+                    src="@articles[1].UrlToImage"
+                    alt="articles[1].UrlToImage"
                     class="banner-top-thumb"
                   />
                 </div>
-                <h5 class="m-0 font-weight-bold">How Hungary produced the</h5>
+                <h5 class="m-0 font-weight-bold">@articles[1].Title</h5>
               </div>
               <div class="d-flex justify-content-between mb-3 mb-lg-0">
                 <div>
                   <img
-                    src="assets/images/dashboard/star-magazine-3.jpg"
-                    alt="thumb"
+                    src="@articles[2].UrlToImage"
+                    alt="articles[2].Title"
                     class="banner-top-thumb"
                   />
                 </div>
                 <h5 class="m-0 font-weight-bold">
-                  A sleepy island paradise's most
+                  @articles[2].Title
                 </h5>
               </div>
               <div class="d-flex justify-content-between mb-3 mb-lg-0">
                 <div>
                   <img
-                    src="assets/images/dashboard/star-magazine-4.jpg"
-                    alt="thumb"
+                    src="@articles[3].UrlToImage"
+                    alt="articles[3].Title"
                     class="banner-top-thumb"
                   />
                 </div>
                 <h5 class="m-0 font-weight-bold">
-                  America's most popular national
+                  @articles[3].Title
                 </h5>
               </div>
             </div>
