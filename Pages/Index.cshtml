@@ -10,7 +10,7 @@
           @{
             try
             {
-              var articles = IndexModel.GetArticles(); // 
+              var articles = await GetArticles("amlo", "es");
             }
             catch (System.Exception ex)
             {
