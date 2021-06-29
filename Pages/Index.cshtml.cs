@@ -11,7 +11,7 @@ namespace NewsAndFuture.Pages
 {
     public class IndexModel : PageModel
     {
-        
+        public static List<Article> ArticlesRequested = new List<Article>();
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger)
@@ -19,9 +19,18 @@ namespace NewsAndFuture.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public async void OnGet()
         {
-
+            try
+            {
+                 ArticlesRequested = await GetArticles("elon musk", "en");
+            }
+            catch (System.Exception ex)
+            {
+                 // TODO
+                 System.Console.WriteLine(ex.Message);
+            }
+           
         }
         public static async Task<List<Article>> GetArticles(string search, string lang) 
         {
