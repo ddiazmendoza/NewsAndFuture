@@ -11,13 +11,14 @@
       <div class="main-panel">
         <div class="container">
           <div class="banner-top-thumb-wrap">
-            <div class="d-lg-flex justify-content-between align-items-center">
+            <div class="d-lg-flex justify-content-between align-items-center ">
               <div class="d-flex justify-content-between  mb-3 mb-lg-0">
                 <div>
                   <img
                     src="@articles[0].UrlToImage"
                     alt="articles[0].image"
-                    class="banner-top-thumb"
+                    class="banner-top-thumb "
+                    
                   />
                 </div>
                 <h5 class="m-0 font-weight-bold">
@@ -30,9 +31,15 @@
                     src="@articles[1].UrlToImage"
                     alt="articles[1].UrlToImage"
                     class="banner-top-thumb"
+                    
                   />
                 </div>
-                <h5 class="m-0 font-weight-bold">@articles[1].Title</h5>
+                <h5 class="m-0 font-weight-bold">
+                  @{
+                    var myArticles = articles[1].Title.Split(' ', ',', '.', ';');
+                    var words = myArticles.Length;
+                  }
+                </h5>
               </div>
               <div class="d-flex justify-content-between mb-3 mb-lg-0">
                 <div>

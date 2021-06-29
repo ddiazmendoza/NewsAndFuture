@@ -25,9 +25,18 @@ namespace NewsAndFuture.Pages
         }
         public static async Task<List<Article>> GetArticles(string search, string lang) 
         {
-            var articles = await APIConnection.EstablishConnectionAsync("amlo", "es");
-            var _art = articles.Articles;
-            return _art;
+            try
+            {
+                var articles = await APIConnection.EstablishConnectionAsync(search, lang);
+                var _art = articles.Articles;
+                return _art;    
+            }
+            catch (System.Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return null; // TODO
+            }
+            
         }
        
     }
