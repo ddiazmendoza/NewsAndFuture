@@ -23,19 +23,19 @@
           <div class="banner-top-thumb-wrap">
             <div class="d-lg-flex justify-content-between align-items-center ">
               <div class="d-flex justify-content-between  mb-3 mb-lg-0 text-truncate">
-                <div><a href="@ArticlesRequested[0].Url">
+                <div><a href="@ArticlesRequested[10].Url">
                   <img
-                    src="@ArticlesRequested[0].UrlToImage"
-                    alt="ArticlesRequested[0].image"
+                    src="@ArticlesRequested[10].UrlToImage"
+                    alt="ArticlesRequested[10].image"
                     class="banner-top-thumb "
                     
                   /></a>
                 </div>
-                <h5 class="m-0 font-weight-bold">
-                  @ArticlesRequested[0].Title
+                <h5 class="m-0 font-weight-bold  ">
+                  @ArticlesRequested[10].Title
                 </h5>
               </div>
-              <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate" style="max-height: 250px;">
+              <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate">
                 <div><a href="@ArticlesRequested[1].Url">
                   <img
                     src="@ArticlesRequested[1].UrlToImage"
@@ -44,7 +44,7 @@
                     
                   /></a>
                 </div>
-                <h5 class="m-0 font-weight-bold">
+                <h5 class="m-0 font-weight-bold text-truncate ">
                   @ArticlesRequested[1].Title
                 </h5>
               </div>
@@ -56,7 +56,7 @@
                     class="banner-top-thumb"
                   /></a>
                 </div>
-                <h5 class="m-0 font-weight-bold">
+                <h5 class="m-0 font-weight-bold text-truncate ">
                   @ArticlesRequested[2].Title
                 </h5>
               </div>
@@ -68,7 +68,7 @@
                     class="banner-top-thumb"
                   /></a>
                 </div>
-                <h5 class="m-0 font-weight-bold">
+                <h5 class="m-0 font-weight-bold text-truncate">
                   @ArticlesRequested[3].Title
                 </h5>
               </div>
@@ -81,20 +81,20 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        If you wanted to get rich, how would you do it?
+                        @ArticlesRequested[0].Title  @* Title *@
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        Lorem Ipsum has been the industry's standard
+                        @ArticlesRequested[0].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">2 hours ago</span>
+                        <span class="fs-10 mr-1">@ArticlesRequested[0].PublishedAt</span> @* Published at *@
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
                         <span class="fs-10 mr-1">126</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
-                    <div class="carousel-image">
-                      <img src="assets/images/dashboard/banner.jpg" alt="" />
+                    <div class="carousel-image" style="max-height: 100%;">
+                      <img class="image-fluid" src="@ArticlesRequested[0].UrlToImage" alt="an image should be here" />
                     </div>
                   </div>
                 </div>
@@ -102,20 +102,20 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        If you wanted to get rich, how would you do it?
+                        @ArticlesRequested[4].Title
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        Lorem Ipsum has been the industry's standard
+                        @ArticlesRequested[4].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">2 hours ago</span>
+                        <span class="fs-10 mr-1">@ArticlesRequested[4].PublishedAt</span>
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
                         <span class="fs-10 mr-1">126</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
                     <div class="carousel-image">
-                      <img src="assets/images/dashboard/banner_1.jpg" alt="" />
+                      <img src="@ArticlesRequested[4].UrlToImage" alt="" />
                     </div>
                   </div>
                 </div>
@@ -123,20 +123,20 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        If you wanted to get rich, how would you do it?
+                        @ArticlesRequested[5].Title
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        Lorem Ipsum has been the industry's standard
+                        @ArticlesRequested[5].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">2 hours ago</span>
+                        <span class="fs-10 mr-1">@ArticlesRequested[5].PublishedAt</span>
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
                         <span class="fs-10 mr-1">126</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
                     <div class="carousel-image">
-                      <img src="assets/images/dashboard/banner_2.jpg" alt="" />
+                      <img src="@ArticlesRequested[5].UrlToImage" alt="" />
                     </div>
                   </div>
                 </div>
@@ -144,22 +144,22 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        If you wanted to get rich, how would you do it?
+                        @ArticlesRequested[6].Title
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        Lorem Ipsum has been the industry's standard
+                        @ArticlesRequested[6].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">2 hours ago</span>
+                        <span class="fs-10 mr-1">@ArticlesRequested[6].PublishedAt</span>
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
                         <span class="fs-10 mr-1">126</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
                     <div class="carousel-image">
-                      <img src="assets/images/dashboard/banner_3.jpg" alt="" />
+                      <img src="@ArticlesRequested[6].UrlToImage" alt="" />
                     </div>
-                  </div>
+                  </div> 
                 </div>
               </div>
             </div>
