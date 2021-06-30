@@ -77,4 +77,13 @@ body {
 .text-dark {
   color: #343a40!important;
 }
+.text-truncate {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  border: 1px solid #ddd;
+  margin: 0;
+}
 

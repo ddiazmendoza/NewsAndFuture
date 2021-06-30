@@ -2,73 +2,74 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    List<Models.Article> Articles = new List<Models.Article>();
-      try
-      {
-        var articles = await IndexModel.GetArticles("elon musk", "en");  
-        Articles = articles;    
-        
-      }
-      catch (System.Exception ex)
-      {
-         // TODOcw
-        System.Console.WriteLine(ex.Message);
-      }
+    var ArticlesRequested = new List<Models.Article>();
+    try
+    {
+          ArticlesRequested = await IndexModel.GetArticles("elon musk", "en");
+    }
+    catch (System.Exception ex)
+    {
+          // TODO
+          System.Console.WriteLine(ex.Message);
+    }
 }
-<body>
+@{
+  if (ArticlesRequested.Count != 0) 
+  {
+      <body>
     <div class="container-scroller">
       <div class="main-panel">
         <div class="container">
           <div class="banner-top-thumb-wrap">
             <div class="d-lg-flex justify-content-between align-items-center ">
-              <div class="d-flex justify-content-between  mb-3 mb-lg-0">
-                <div>
+              <div class="d-flex justify-content-between  mb-3 mb-lg-0 text-truncate">
+                <div><a href="@ArticlesRequested[0].Url">
                   <img
-                    src="@Articles[0].UrlToImage"
-                    alt="Articles[0].image"
+                    src="@ArticlesRequested[0].UrlToImage"
+                    alt="ArticlesRequested[0].image"
                     class="banner-top-thumb "
                     
-                  />
+                  /></a>
                 </div>
                 <h5 class="m-0 font-weight-bold">
-                  @Articles[0].Title
+                  @ArticlesRequested[0].Title
                 </h5>
               </div>
-              <div class="d-flex justify-content-between mb-3 mb-lg-0">
-                <div>
+              <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate" style="max-height: 250px;">
+                <div><a href="@ArticlesRequested[1].Url">
                   <img
-                    src="@Articles[1].UrlToImage"
-                    alt="Articles[1].UrlToImage"
+                    src="@ArticlesRequested[1].UrlToImage"
+                    alt="ArticlesRequested[1].UrlToImage"
                     class="banner-top-thumb"
                     
-                  />
+                  /></a>
                 </div>
                 <h5 class="m-0 font-weight-bold">
-                  @Articles[1].Title
+                  @ArticlesRequested[1].Title
                 </h5>
               </div>
-              <div class="d-flex justify-content-between mb-3 mb-lg-0">
-                <div>
+              <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate">
+                <div><a href="@ArticlesRequested[2].Url">
                   <img
-                    src="@Articles[2].UrlToImage"
-                    alt="Articles[2].Title"
+                    src="@ArticlesRequested[2].UrlToImage"
+                    alt="ArticlesRequested[2].Title"
                     class="banner-top-thumb"
-                  />
+                  /></a>
                 </div>
                 <h5 class="m-0 font-weight-bold">
-                  @Articles[2].Title
+                  @ArticlesRequested[2].Title
                 </h5>
               </div>
-              <div class="d-flex justify-content-between mb-3 mb-lg-0">
-                <div>
+              <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate">
+                <div><a href="@ArticlesRequested[1].Url">
                   <img
-                    src="@Articles[3].UrlToImage"
-                    alt="Articles[3].Title"
+                    src="@ArticlesRequested[3].UrlToImage"
+                    alt="ArticlesRequested[3].Title"
                     class="banner-top-thumb"
-                  />
+                  /></a>
                 </div>
                 <h5 class="m-0 font-weight-bold">
-                  @Articles[3].Title
+                  @ArticlesRequested[3].Title
                 </h5>
               </div>
             </div>
@@ -615,4 +616,6 @@
         </div>  
     </div>
     </body>
-</html>
+  } else { <div>Not working</div> }
+}
+
