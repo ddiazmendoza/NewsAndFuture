@@ -87,4 +87,15 @@ body {
 .carousel-image {
   max-height: 100px;
 }
+.prices-card p {
+  text-overflow:inherit;
+  
+  color: rgb(201, 0, 0);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.prices-card:hover {
+  border: lightcoral;
+  border-radius: 3;
+}
+
 

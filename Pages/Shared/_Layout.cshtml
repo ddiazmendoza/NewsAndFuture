@@ -1,5 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="zxx">
+  
+  
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -137,7 +139,30 @@
                       <a class="nav-link" href="pages/real-estate.html">Mexico</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="pages/travel.html">Politics</a>
+                      <div class="prices-card">
+                      @{
+                        try
+                          {
+                              var Eth = await IndexModel.GetCurrencies("ETH", "USD");
+                              var Doge = await IndexModel.GetCurrencies("DOGE", "USD");   
+
+                              var theprice = Eth.Data.Prices[0].PricePrice;
+                              var price = Convert.ToDouble(theprice);
+                              var priceprice = price.ToString("C");
+
+                              var dogeprice = Doge.Data.Prices[0].PricePrice;
+                              var dprice = Convert.ToDouble(dogeprice);
+                              var dpriceprice = dprice.ToString("C");
+
+                              <p>ETH: @priceprice</p> 
+                              <p>Doge: @dpriceprice</p>       
+                          }
+                          catch (System.Exception ex)
+                          {
+                              System.Console.WriteLine(ex.Message);    // TODO
+                          }
+                        }
+                        </div>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#"><i class="mdi mdi-magnify"></i></a>

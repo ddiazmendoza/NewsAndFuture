@@ -2,15 +2,16 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    var ElonArticles = new List<Models.Article>();
-    var StarshipArticles = new List<Models.Article>();
-    var BitcoinArticles = new List<Models.Article>();
+    var SEARCH_A = new List<Models.Article>();
+    var SEARCH_B = new List<Models.Article>();
+    var SEARCH_C = new List<Models.Article>();
+    var LatestNewsArticles = new List<Models.Article>();
 
     try
     {
-          ElonArticles = await IndexModel.GetArticles("elon musk", "en");
-          StarshipArticles = await IndexModel.GetArticles("starship space x", "en");
-          BitcoinArticles = await IndexModel.GetArticles("bitcoin ethereum dogecoin", "en");
+          SEARCH_A = await IndexModel.GetArticles("elon musk", "en");
+          SEARCH_B = await IndexModel.GetArticles("space x", "en");
+          // LatestNewsArticles = await IndexModel.GetTopHeadlines(); // ES
     }
     catch (System.Exception ex)
     {
@@ -19,7 +20,7 @@
     }
 }
 @{
-  if (ElonArticles.Count != 0) 
+  if (SEARCH_A.Count != 0) 
   {
       <body>
     <div class="container-scroller">
@@ -28,53 +29,53 @@
           <div class="banner-top-thumb-wrap">
             <div class="d-lg-flex justify-content-between align-items-center ">
               <div class="d-flex justify-content-between  mb-3 mb-lg-0 text-truncate">
-                <div><a href="@ElonArticles[10].Url">
+                <div><a href="@SEARCH_A[1].Url">
                   <img
-                    src="@ElonArticles[10].UrlToImage"
+                    src="@SEARCH_A[1].UrlToImage"
                     alt="ArticlesRequestedElonMusk[10].image"
                     class="banner-top-thumb "
                     
                   /></a>
                 </div>
                 <h5 class="m-0 font-weight-bold  ">
-                  @ElonArticles[10].Title
+                  @SEARCH_A[1].Title
                 </h5>
               </div>
               <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate">
-                <div><a href="@ElonArticles[1].Url">
+                <div><a href="@SEARCH_A[2].Url">
                   <img
-                    src="@ElonArticles[1].UrlToImage"
+                    src="@SEARCH_A[2].UrlToImage"
                     alt="ArticlesRequestedElonMusk[1].UrlToImage"
                     class="banner-top-thumb"
                     
                   /></a>
                 </div>
                 <h5 class="m-0 font-weight-bold text-truncate ">
-                  @ElonArticles[1].Title
+                  @SEARCH_A[2].Title
                 </h5>
               </div>
               <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate">
-                <div><a href="@ElonArticles[2].Url">
+                <div><a href="@SEARCH_A[3].Url">
                   <img
-                    src="@ElonArticles[2].UrlToImage"
-                    alt="ArticlesRequestedElonMusk[2].Title"
-                    class="banner-top-thumb"
-                  /></a>
-                </div>
-                <h5 class="m-0 font-weight-bold text-truncate ">
-                  @ElonArticles[2].Title
-                </h5>
-              </div>
-              <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate">
-                <div><a href="@ElonArticles[1].Url">
-                  <img
-                    src="@ElonArticles[3].UrlToImage"
+                    src="@SEARCH_A[3].UrlToImage"
                     alt="ArticlesRequestedElonMusk[3].Title"
                     class="banner-top-thumb"
                   /></a>
                 </div>
+                <h5 class="m-0 font-weight-bold text-truncate ">
+                  @SEARCH_A[3].Title
+                </h5>
+              </div>
+              <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate">
+                <div><a href="@SEARCH_A[4].Url">
+                  <img
+                    src="@SEARCH_A[4].UrlToImage"
+                    alt="ArticlesRequestedElonMusk[4].Title"
+                    class="banner-top-thumb"
+                  /></a>
+                </div>
                 <h5 class="m-0 font-weight-bold text-truncate">
-                  @ElonArticles[3].Title
+                  @SEARCH_A[4].Title
                 </h5>
               </div>
             </div>
@@ -86,20 +87,20 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        @ElonArticles[0].Title  @* Title *@
+                        @SEARCH_A[0].Title  @* Title *@
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        @ElonArticles[0].Description
+                        @SEARCH_A[0].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">@ElonArticles[0].PublishedAt</span> @* Published at *@
+                        <span class="fs-10 mr-1">@SEARCH_A[0].PublishedAt</span> @* Published at *@
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
                         <span class="fs-10 mr-1">126</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
                     <div class="carousel-image" style="max-height: 100%;">
-                      <img class="image-fluid" src="@ElonArticles[0].UrlToImage" alt="an image should be here" />
+                      <img class="image-fluid" src="@SEARCH_A[0].UrlToImage" alt="an image should be here" />
                     </div>
                   </div>
                 </div>
@@ -107,20 +108,20 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        @ElonArticles[4].Title
+                        @SEARCH_B[0].Title
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        @ElonArticles[4].Description
+                        @SEARCH_B[0].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">@ElonArticles[4].PublishedAt</span>
+                        <span class="fs-10 mr-1">@SEARCH_B[0].PublishedAt</span>
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
-                        <span class="fs-10 mr-1">126</span>
+                        <span class="fs-10 mr-1">@SEARCH_B[0].Source</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
                     <div class="carousel-image img-fluid">
-                      <img src="@ElonArticles[4].UrlToImage" alt="" />
+                      <img src="@SEARCH_B[0].UrlToImage" alt="" />
                     </div>
                   </div>
                 </div>
@@ -128,20 +129,20 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        @ElonArticles[5].Title
+                        @SEARCH_A[5].Title
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        @ElonArticles[5].Description
+                        @SEARCH_A[5].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">@ElonArticles[5].PublishedAt</span>
+                        <span class="fs-10 mr-1">@SEARCH_A[5].PublishedAt</span>
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
-                        <span class="fs-10 mr-1">126</span>
+                        <span class="fs-10 mr-1">@SEARCH_A[5].Source</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
                     <div class="carousel-image img-fluid">
-                      <img src="@ElonArticles[5].UrlToImage" alt="" />
+                      <img src="@SEARCH_A[5].UrlToImage" alt="" />
                     </div>
                   </div>
                 </div>
@@ -149,20 +150,20 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        @ElonArticles[6].Title
+                        @SEARCH_A[6].Title
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        @ElonArticles[6].Description
+                        @SEARCH_A[6].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">@ElonArticles[6].PublishedAt</span>
+                        <span class="fs-10 mr-1">@SEARCH_A[6].PublishedAt</span>
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
-                        <span class="fs-10 mr-1">126</span>
+                        <span class="fs-10 mr-1">@SEARCH_A[6].Source</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
                     <div class="carousel-image img-fluid">
-                      <img src="@ElonArticles[6].UrlToImage" alt="" />
+                      <img src="@SEARCH_A[6].UrlToImage" alt="" />
                     </div>
                   </div> 
                 </div>
@@ -174,14 +175,14 @@
                   <div class="py-3 border-bottom">
                     <div class="d-flex align-items-center pb-2">
                       <img
-                        src="assets/images/dashboard/Profile_1.jpg"
+                        src="@SEARCH_C[0]."
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@BitcoinArticles[0].Author</span>
+                      <span class="fs-12 text-muted">@SEARCH_C[0].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @BitcoinArticles[0].Title
+                      @SEARCH_C[0].Title
                     </p>
                   </div>
                 </div>
@@ -189,14 +190,14 @@
                   <div class="py-3 border-bottom">
                     <div class="d-flex align-items-center pb-2">
                       <img
-                        src="assets/images/dashboard/Profile_2.jpg"
+                        src="@SEARCH_C[1].UrlToImage"
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@BitcoinArticles[1].Author</span>
+                      <span class="fs-12 text-muted">@SEARCH_C[1].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @BitcoinArticles[1].Title
+                      @SEARCH_C[1].Title
                     </p>
                   </div>
                 </div>
@@ -210,10 +211,10 @@
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@BitcoinArticles[2].Author</span>
+                      <span class="fs-12 text-muted">@SEARCH_C[2].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @BitcoinArticles[2].Title
+                      @SEARCH_C[2].Title
                     </p>
                   </div>
                 </div>
@@ -225,10 +226,10 @@
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@BitcoinArticles[3].Author</span>
+                      <span class="fs-12 text-muted">@SEARCH_C[3].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @BitcoinArticles[3].Title
+                      @SEARCH_C[3].Title
                     </p>
                   </div>
                 </div>
@@ -242,10 +243,10 @@
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@ElonArticles[11].Author</span>
+                      <span class="fs-12 text-muted">@SEARCH_A[11].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @ElonArticles[11].Title
+                      @SEARCH_A[11].Title
                     </p>
                   </div>
                 </div>
@@ -257,10 +258,10 @@
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@ElonArticles[9].Author</span>
+                      <span class="fs-12 text-muted">@SEARCH_A[9].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @BitcoinArticles[9].Title
+                      @SEARCH_C[9].Title
                     </p>
                   </div>
                 </div>
@@ -271,7 +272,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="d-flex position-relative  float-left">
-                  <h3 class="section-title">Technology News</h3>
+                  <h3 class="section-title">Latest News</h3>
                 </div>
               </div>
             </div>
@@ -279,67 +280,65 @@
               <div class="col-lg-3 col-sm-6 grid-margin mb-5 mb-sm-2">
                 <div class="position-relative image-hover">
                   <img
-                    src="@StarshipArticles[0].UrlToImage"
+                    src="@SEARCH_B[0].UrlToImage"
                     class="img-fluid"
                     alt="world-news"
                   />
-                  <span class="thumb-title">Starship</span>
+                  <span class="thumb-title">Space X</span>
                 </div>
                 <h5 class="font-weight-bold mt-3">
-                  @StarshipArticles[0].Title
+                  @SEARCH_B[0].Title
+                </h5>
+                <p class="fs-15 font-weight-normal text-truncate">
+                  @SEARCH_B[0].Description
+                </p>
+                <a href="@SEARCH_B[0].Url" class="font-weight-bold text-dark pt-2">
+                  Read Article</a>
+              </div>
+              <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
+                <div class="position-relative image-hover">
+                  <img
+                    src=" @SEARCH_B[1].UrlToImage"
+                    class="img-fluid"
+                    alt="world-news"
+                  />
+                  <span class="thumb-title">Space X</span>
+                </div>
+                <h5 class="font-weight-bold mt-3">
+                  @SEARCH_B[1].Title
                 </h5>
                 <p class="fs-15 font-weight-normal">
-                  @StarshipArticles[0].Description
+                  @SEARCH_B[1].Description
                 </p>
-                <a href="@StarshipArticles[0].UrlToImage" class="font-weight-bold text-dark pt-2"
+                <a href="@SEARCH_B[1].Url" class="font-weight-bold text-dark pt-2">
+                  Read Article</a>
+              </div>
+              <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
+                <div class="position-relative image-hover">
+                  <img
+                    src="@SEARCH_B[2].UrlToImage"
+                    class="img-fluid"
+                    alt="world-news"
+                  />
+                  <span class="thumb-title">Space X</span>
+                </div>
+                <h5 class="font-weight-bold mt-3">
+                  @SEARCH_B[2].Title
+                </h5>
+                <p class="fs-15 font-weight-normal">
+                  @SEARCH_B[2].Description
+                </p>
+                <a href="@SEARCH_B[2].Url" class="font-weight-bold text-dark pt-2"
                   >Read Article</a>
               </div>
               <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
                 <div class="position-relative image-hover">
                   <img
-                    src="assets/images/dashboard/news.jpg"
+                    src="@SEARCH_C[2].UrlToImage"
                     class="img-fluid"
                     alt="world-news"
                   />
-                  <span class="thumb-title">NEWS</span>
-                </div>
-                <h5 class="font-weight-bold mt-3">
-                  South Korea’s Moon Jae-in sworn in vowing address
-                </h5>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
-                <a href="#" class="font-weight-bold text-dark pt-2"
-                  >Read Article</a
-                >
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
-                <div class="position-relative image-hover">
-                  <img
-                    src="assets/images/dashboard/art.jpg"
-                    class="img-fluid"
-                    alt="world-news"
-                  />
-                  <span class="thumb-title">ART</span>
-                </div>
-                <h5 class="font-weight-bold mt-3">
-                  These puppies are training to assist in avalanche rescue
-                </h5>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
-                <a href="#" class="font-weight-bold text-dark pt-2"
-                  >Read Article</a
-                >
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
-                <div class="position-relative image-hover">
-                  <img
-                    src="assets/images/dashboard/business.jpg"
-                    class="img-fluid"
-                    alt="world-news"
-                  />
-                  <span class="thumb-title">BUSINESS</span>
+                  <span class="thumb-title">Bitcoin</span>
                 </div>
                 <h5 class="font-weight-bold mt-3">
                   'Love Is Blind' couple opens up about their first year
