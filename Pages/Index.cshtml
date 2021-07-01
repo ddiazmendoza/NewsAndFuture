@@ -2,15 +2,15 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    var ArticlesRequestedElonMusk = new List<Models.Article>();
-    var ArticlesRequestedStarship = new List<Models.Article>();
-    var ArticlesRequestedBitcoin = new List<Models.Article>();
+    var ElonArticles = new List<Models.Article>();
+    var StarshipArticles = new List<Models.Article>();
+    var BitcoinArticles = new List<Models.Article>();
 
     try
     {
-          ArticlesRequestedElonMusk = await IndexModel.GetArticles("elon musk", "en");
-          ArticlesRequestedStarship = await IndexModel.GetArticles("starship", "en");
-          ArticlesRequestedBitcoin = await IndexModel.GetArticles("bitcoin", "en");
+          ElonArticles = await IndexModel.GetArticles("elon musk", "en");
+          StarshipArticles = await IndexModel.GetArticles("starship space x", "en");
+          BitcoinArticles = await IndexModel.GetArticles("bitcoin ethereum dogecoin", "en");
     }
     catch (System.Exception ex)
     {
@@ -19,7 +19,7 @@
     }
 }
 @{
-  if (ArticlesRequestedElonMusk.Count != 0) 
+  if (ElonArticles.Count != 0) 
   {
       <body>
     <div class="container-scroller">
@@ -28,53 +28,53 @@
           <div class="banner-top-thumb-wrap">
             <div class="d-lg-flex justify-content-between align-items-center ">
               <div class="d-flex justify-content-between  mb-3 mb-lg-0 text-truncate">
-                <div><a href="@ArticlesRequestedElonMusk[10].Url">
+                <div><a href="@ElonArticles[10].Url">
                   <img
-                    src="@ArticlesRequestedElonMusk[10].UrlToImage"
+                    src="@ElonArticles[10].UrlToImage"
                     alt="ArticlesRequestedElonMusk[10].image"
                     class="banner-top-thumb "
                     
                   /></a>
                 </div>
                 <h5 class="m-0 font-weight-bold  ">
-                  @ArticlesRequestedElonMusk[10].Title
+                  @ElonArticles[10].Title
                 </h5>
               </div>
               <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate">
-                <div><a href="@ArticlesRequestedElonMusk[1].Url">
+                <div><a href="@ElonArticles[1].Url">
                   <img
-                    src="@ArticlesRequestedElonMusk[1].UrlToImage"
+                    src="@ElonArticles[1].UrlToImage"
                     alt="ArticlesRequestedElonMusk[1].UrlToImage"
                     class="banner-top-thumb"
                     
                   /></a>
                 </div>
                 <h5 class="m-0 font-weight-bold text-truncate ">
-                  @ArticlesRequestedElonMusk[1].Title
+                  @ElonArticles[1].Title
                 </h5>
               </div>
               <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate">
-                <div><a href="@ArticlesRequestedElonMusk[2].Url">
+                <div><a href="@ElonArticles[2].Url">
                   <img
-                    src="@ArticlesRequestedElonMusk[2].UrlToImage"
+                    src="@ElonArticles[2].UrlToImage"
                     alt="ArticlesRequestedElonMusk[2].Title"
                     class="banner-top-thumb"
                   /></a>
                 </div>
                 <h5 class="m-0 font-weight-bold text-truncate ">
-                  @ArticlesRequestedElonMusk[2].Title
+                  @ElonArticles[2].Title
                 </h5>
               </div>
               <div class="d-flex justify-content-between mb-3 mb-lg-0 text-truncate">
-                <div><a href="@ArticlesRequestedElonMusk[1].Url">
+                <div><a href="@ElonArticles[1].Url">
                   <img
-                    src="@ArticlesRequestedElonMusk[3].UrlToImage"
+                    src="@ElonArticles[3].UrlToImage"
                     alt="ArticlesRequestedElonMusk[3].Title"
                     class="banner-top-thumb"
                   /></a>
                 </div>
                 <h5 class="m-0 font-weight-bold text-truncate">
-                  @ArticlesRequestedElonMusk[3].Title
+                  @ElonArticles[3].Title
                 </h5>
               </div>
             </div>
@@ -86,20 +86,20 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        @ArticlesRequestedElonMusk[0].Title  @* Title *@
+                        @ElonArticles[0].Title  @* Title *@
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        @ArticlesRequestedElonMusk[0].Description
+                        @ElonArticles[0].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">@ArticlesRequestedElonMusk[0].PublishedAt</span> @* Published at *@
+                        <span class="fs-10 mr-1">@ElonArticles[0].PublishedAt</span> @* Published at *@
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
                         <span class="fs-10 mr-1">126</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
                     <div class="carousel-image" style="max-height: 100%;">
-                      <img class="image-fluid" src="@ArticlesRequestedElonMusk[0].UrlToImage" alt="an image should be here" />
+                      <img class="image-fluid" src="@ElonArticles[0].UrlToImage" alt="an image should be here" />
                     </div>
                   </div>
                 </div>
@@ -107,20 +107,20 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        @ArticlesRequestedElonMusk[4].Title
+                        @ElonArticles[4].Title
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        @ArticlesRequestedElonMusk[4].Description
+                        @ElonArticles[4].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">@ArticlesRequestedElonMusk[4].PublishedAt</span>
+                        <span class="fs-10 mr-1">@ElonArticles[4].PublishedAt</span>
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
                         <span class="fs-10 mr-1">126</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
                     <div class="carousel-image img-fluid">
-                      <img src="@ArticlesRequestedElonMusk[4].UrlToImage" alt="" />
+                      <img src="@ElonArticles[4].UrlToImage" alt="" />
                     </div>
                   </div>
                 </div>
@@ -128,20 +128,20 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        @ArticlesRequestedElonMusk[5].Title
+                        @ElonArticles[5].Title
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        @ArticlesRequestedElonMusk[5].Description
+                        @ElonArticles[5].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">@ArticlesRequestedElonMusk[5].PublishedAt</span>
+                        <span class="fs-10 mr-1">@ElonArticles[5].PublishedAt</span>
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
                         <span class="fs-10 mr-1">126</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
                     <div class="carousel-image img-fluid">
-                      <img src="@ArticlesRequestedElonMusk[5].UrlToImage" alt="" />
+                      <img src="@ElonArticles[5].UrlToImage" alt="" />
                     </div>
                   </div>
                 </div>
@@ -149,20 +149,20 @@
                   <div class="carousel-content-wrapper mb-2">
                     <div class="carousel-content">
                       <h1 class="font-weight-bold">
-                        @ArticlesRequestedElonMusk[6].Title
+                        @ElonArticles[6].Title
                       </h1>
                       <h5 class="font-weight-normal  m-0">
-                        @ArticlesRequestedElonMusk[6].Description
+                        @ElonArticles[6].Description
                       </h5>
                       <p class="text-color m-0 pt-2 d-flex align-items-center">
-                        <span class="fs-10 mr-1">@ArticlesRequestedElonMusk[6].PublishedAt</span>
+                        <span class="fs-10 mr-1">@ElonArticles[6].PublishedAt</span>
                         <i class="mdi mdi-bookmark-outline mr-3"></i>
                         <span class="fs-10 mr-1">126</span>
                         <i class="mdi mdi-comment-outline"></i>
                       </p>
                     </div>
                     <div class="carousel-image img-fluid">
-                      <img src="@ArticlesRequestedElonMusk[6].UrlToImage" alt="" />
+                      <img src="@ElonArticles[6].UrlToImage" alt="" />
                     </div>
                   </div> 
                 </div>
@@ -178,10 +178,10 @@
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@ArticlesRequestedBitcoin[0].Author</span>
+                      <span class="fs-12 text-muted">@BitcoinArticles[0].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @ArticlesRequestedBitcoin[0].Title
+                      @BitcoinArticles[0].Title
                     </p>
                   </div>
                 </div>
@@ -193,10 +193,10 @@
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@ArticlesRequestedBitcoin[1].Author</span>
+                      <span class="fs-12 text-muted">@BitcoinArticles[1].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @ArticlesRequestedBitcoin[1].Title
+                      @BitcoinArticles[1].Title
                     </p>
                   </div>
                 </div>
@@ -210,10 +210,10 @@
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@ArticlesRequestedBitcoin[2].Author</span>
+                      <span class="fs-12 text-muted">@BitcoinArticles[2].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @ArticlesRequestedBitcoin[2].Title
+                      @BitcoinArticles[2].Title
                     </p>
                   </div>
                 </div>
@@ -225,10 +225,10 @@
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@ArticlesRequestedBitcoin[3].Author</span>
+                      <span class="fs-12 text-muted">@BitcoinArticles[3].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @ArticlesRequestedBitcoin[3].Title
+                      @BitcoinArticles[3].Title
                     </p>
                   </div>
                 </div>
@@ -242,10 +242,10 @@
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@ArticlesRequestedElonMusk[0].Author</span>
+                      <span class="fs-12 text-muted">@ElonArticles[11].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @ArticlesRequestedElonMusk[0].Title
+                      @ElonArticles[11].Title
                     </p>
                   </div>
                 </div>
@@ -257,10 +257,10 @@
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@ArticlesRequestedElonMusk[9].Author</span>
+                      <span class="fs-12 text-muted">@ElonArticles[9].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @ArticlesRequestedBitcoin[9].Title
+                      @BitcoinArticles[9].Title
                     </p>
                   </div>
                 </div>
@@ -271,7 +271,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="d-flex position-relative  float-left">
-                  <h3 class="section-title">World News</h3>
+                  <h3 class="section-title">Technology News</h3>
                 </div>
               </div>
             </div>
@@ -279,21 +279,20 @@
               <div class="col-lg-3 col-sm-6 grid-margin mb-5 mb-sm-2">
                 <div class="position-relative image-hover">
                   <img
-                    src="assets/images/dashboard/travel.jpg"
+                    src="@StarshipArticles[0].UrlToImage"
                     class="img-fluid"
                     alt="world-news"
                   />
-                  <span class="thumb-title">TRAVEL</span>
+                  <span class="thumb-title">Starship</span>
                 </div>
                 <h5 class="font-weight-bold mt-3">
-                  Refugees flood Turkey's border with Greece
+                  @StarshipArticles[0].Title
                 </h5>
                 <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
+                  @StarshipArticles[0].Description
                 </p>
-                <a href="#" class="font-weight-bold text-dark pt-2"
-                  >Read Article</a
-                >
+                <a href="@StarshipArticles[0].UrlToImage" class="font-weight-bold text-dark pt-2"
+                  >Read Article</a>
               </div>
               <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
                 <div class="position-relative image-hover">

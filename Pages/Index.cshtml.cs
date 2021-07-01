@@ -36,7 +36,7 @@ namespace NewsAndFuture.Pages
                 System.Console.WriteLine(ex.Message);
                 return null; // TODO
             }
-            
+
         }
        
     }
