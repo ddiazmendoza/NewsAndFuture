@@ -45,7 +45,7 @@ namespace NewsAndFuture.Pages
         {
             try
             {
-                var ArticlesRoot = await APIConnection.GetTopHeadlines("mx");
+                var ArticlesRoot = await APIConnection.GetTopHeadlines("us");
                 var Articles = ArticlesRoot.Articles;
                 System.Console.WriteLine($"Artículos top headlines mex encontrados: {Articles.Count}");
                 return Articles;

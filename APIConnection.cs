@@ -12,7 +12,7 @@ namespace NewsAndFuture
         {
             var url = "http://newsapi.org/v2/top-headlines?" +
             $"country={country}&" +
-            "pageSize=100&" +
+            "sortBy=popularity&" +
             "apiKey=fb86b8988414247fb9b0000140cc3838c";
 
             var myClient = new HttpClient() {BaseAddress = new Uri(url)};

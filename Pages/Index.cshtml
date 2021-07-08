@@ -4,12 +4,16 @@
     ViewData["Title"] = "Home page";
     var SEARCH_A = new List<Models.Article>();
     var SEARCH_B = new List<Models.Article>();
-    var SEARCH_C = new List<Models.Article>();
-    var LatestNewsArticles = new List<Models.Article>();
 
     try
     {
           SEARCH_A = await IndexModel.GetArticles("spacex", "en");
+          var varw = await IndexModel.GetTopHeadlines();
+
+          foreach (var item in varw)
+          {
+            
+          }
           SEARCH_B = await IndexModel.GetTopHeadlines();
           // LatestNewsArticles = await IndexModel.GetTopHeadlines(); // ES
     }
@@ -20,9 +24,7 @@
     }
 }
 @{
-  if (SEARCH_A.Count != 0 && SEARCH_B.Count != 0 && SEARCH_C.Count != 0) 
-  {
-      <body>
+  <body>
     <div class="container-scroller">
       <div class="main-panel">
         <div class="container">
@@ -254,14 +256,14 @@
                   <div class="pt-3 pb-4">
                     <div class="d-flex align-items-center pb-2">
                       <img
-                        src="@SEARCH_B[4].UrlToImage"
+                        src="@SEARCH_B[5].UrlToImage"
                         class="img-xs img-rounded mr-2"
                         alt="thumb"
                       />
-                      <span class="fs-12 text-muted">@SEARCH_B[4].Author</span>
+                      <span class="fs-12 text-muted">@SEARCH_B[5].Author</span>
                     </div>
                     <p class="fs-14 m-0 font-weight-medium line-height-sm">
-                      @SEARCH_B[4].Title
+                      @SEARCH_B[5].Title
                     </p>
                   </div>
                 </div>
@@ -280,61 +282,61 @@
               <div class="col-lg-3 col-sm-6 grid-margin mb-5 mb-sm-2">
                 <div class="position-relative image-hover">
                   <img
-                    src="@SEARCH_B[0].UrlToImage"
+                    src="@SEARCH_B[6].UrlToImage"
                     class="img-fluid"
                     alt="world-news"
                   />
                   <span class="thumb-title">Space X</span>
                 </div>
                 <h5 class="font-weight-bold mt-3">
-                  @SEARCH_B[0].Title
+                  @SEARCH_B[6].Title
                 </h5>
                 <p class="fs-15 font-weight-normal text-truncate">
-                  @SEARCH_B[0].Description
+                  @SEARCH_B[6].Description
                 </p>
-                <a href="@SEARCH_B[0].Url" class="font-weight-bold text-dark pt-2">
+                <a href="@SEARCH_B[6].Url" class="font-weight-bold text-dark pt-2">
                   Read Article</a>
               </div>
               <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
                 <div class="position-relative image-hover">
                   <img
-                    src=" @SEARCH_B[1].UrlToImage"
+                    src=" @SEARCH_B[7].UrlToImage"
                     class="img-fluid"
                     alt="world-news"
                   />
                   <span class="thumb-title">Space X</span>
                 </div>
                 <h5 class="font-weight-bold mt-3">
-                  @SEARCH_B[1].Title
+                  @SEARCH_B[7].Title
                 </h5>
                 <p class="fs-15 font-weight-normal">
-                  @SEARCH_B[1].Description
+                  @SEARCH_B[7].Description
                 </p>
-                <a href="@SEARCH_B[1].Url" class="font-weight-bold text-dark pt-2">
+                <a href="@SEARCH_B[7].Url" class="font-weight-bold text-dark pt-2">
                   Read Article</a>
               </div>
               <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
                 <div class="position-relative image-hover">
                   <img
-                    src="@SEARCH_B[2].UrlToImage"
+                    src="@SEARCH_B[8].UrlToImage"
                     class="img-fluid"
                     alt="world-news"
                   />
                   <span class="thumb-title">Space X</span>
                 </div>
                 <h5 class="font-weight-bold mt-3">
-                  @SEARCH_B[2].Title
+                  @SEARCH_B[8].Title
                 </h5>
                 <p class="fs-15 font-weight-normal">
-                  @SEARCH_B[2].Description
+                  @SEARCH_B[8].Description
                 </p>
-                <a href="@SEARCH_B[2].Url" class="font-weight-bold text-dark pt-2"
+                <a href="@SEARCH_B[8].Url" class="font-weight-bold text-dark pt-2"
                   >Read Article</a>
               </div>
               <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
                 <div class="position-relative image-hover">
                   <img
-                    src="@SEARCH_C[2].UrlToImage"
+                    src="@SEARCH_B[9].UrlToImage"
                     class="img-fluid"
                     alt="world-news"
                   />
@@ -618,7 +620,6 @@
             </div>
         </div>  
     </div>
-    </body>
-  } else { <div>Not working</div> }
+  </body>
 }
 
