@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NewsAndFuture.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace NewsAndFuture.Interfaces
     public interface INewsProvider
     {
         public Task<IActionResult> GetAllAsync();
+        public Task<Article> GetAsync();
 
     }
 }
