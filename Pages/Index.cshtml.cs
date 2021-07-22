@@ -16,6 +16,7 @@ namespace NewsAndFuture.Pages
     {
         private readonly INewsProvider newsProvider;
         public List<Article> SEARCH_A { get; set; }
+
         public IndexModel(INewsProvider newsProvider)
         {
             this.newsProvider = newsProvider;
@@ -23,6 +24,11 @@ namespace NewsAndFuture.Pages
         public async Task<IActionResult> OnGet()
         {
             var result = await newsProvider.GetAllAsync();
+            if (result != null) 
+            {
+                SEARCH_A = 
+            }
+            return Page();
             
            
         }
