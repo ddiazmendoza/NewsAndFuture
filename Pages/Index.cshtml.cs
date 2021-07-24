@@ -26,7 +26,7 @@ namespace NewsAndFuture.Pages
             var result = await newsProvider.GetAllAsync();
             if (result != null) 
             {
-                SEARCH_A = 
+                SEARCH_A = result.
             }
             return Page();
             
