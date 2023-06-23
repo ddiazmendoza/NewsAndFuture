@@ -10,8 +10,8 @@ namespace NewsAndFuture.Interfaces
 {
     public interface INewsProvider
     {
-        public Task<ICollection> GetAllAsync();
-        public Task<Article> GetAsync();
+        public Task<List<Article>> GetArticlesSearchAsync(string _lang, string _search);
+        public Task<List<Article>> GetTopHeadlinesAsync(string country);
 
     }
 }

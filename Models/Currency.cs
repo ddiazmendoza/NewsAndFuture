@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Text.Json.Serialization;
 
 
-namespace NewsAndFuture.Pages
+namespace NewsAndFuture.Models
 {
 
     public partial class Currency
@@ -37,7 +37,7 @@ namespace NewsAndFuture.Pages
         [JsonPropertyName("time")]
         public long Time { get; set; }
     }
-    
+
 }
 
 

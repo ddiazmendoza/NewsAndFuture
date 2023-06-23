@@ -9,13 +9,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NewsAndFuture.Interfaces;
 using NewsAndFuture.Models;
+using NewsAndFuture.Providers;
 
 namespace NewsAndFuture.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly INewsProvider newsProvider;
-        public List<Article> SEARCH_A { get; set; }
+        public List<Article> TopHeadlines { get; set; }
+        public List<Article> CarouselItems { get; set; }
 
         public IndexModel(INewsProvider newsProvider)
         {
@@ -23,11 +25,17 @@ namespace NewsAndFuture.Pages
         }
         public async Task<IActionResult> OnGet()
         {
-            var result = await newsProvider.GetAllAsync();
-            if (result != null) 
+            try
             {
-                SEARCH_A = result.
+                CarouselItems = new List<Article>(await newsProvider.GetTopHeadlinesAsync("mx"));
+                //CarouselItems = await newsProvider.GetArticlesSearchAsync("es", "amlo");
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+            
             return Page();
             
            
