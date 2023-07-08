@@ -12,12 +12,17 @@ using System.Threading.Tasks;
 
 namespace NewsAndFuture.Providers
 {
-    public class NewsapiProvider : INewsProvider
+    public class NewsProvider : INewsProvider
     {
         private static readonly HttpClient client = new HttpClient()
         {
             BaseAddress = new Uri(@"http://newsapi.org/v2/everything?")
         };
+        public NewsProvider()
+        {
+            // Set the authorization headers and token
+            client.DefaultRequestHeaders.Add("X-Api-Key", "fb86b898844247fb9b0000140cc3838c");
+        }
         public async Task<List<Article>> GetArticlesSearchAsync(string _lang, string _search)
         {
             var q = _search;
@@ -61,21 +66,21 @@ namespace NewsAndFuture.Providers
         public async Task<List<Article>> GetTopHeadlinesAsync(string country)
         {      
             var url = @"http://newsapi.org/v2/top-headlines?";
-            var endpoint = url + 
+            var endpoint = url +
                 $"country={country}&" +
-                "sortBy=popularity&" +
-                "apiKey=fb86b898844247fb9b0000140cc3838c";
-
+                "sortBy=popularity";
             try
             {
-                var request = await client.GetAsync(endpoint);
 
+                var request = await client.GetAsync(endpoint).ConfigureAwait(false);
+                
                 var articles = new List<Article>();
-
+                //// Deserialize the response string directly
+                //var articlesRoot = JsonSerializer.Deserialize<ArticlesRoot>(response, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
 
                 if (request.IsSuccessStatusCode)
                 {
-                    var content = await request.Content.ReadAsStringAsync();
+                    var content = await request.Content.ReadAsStringAsync().ConfigureAwait(false);
                     var articlesRoot = JsonSerializer.Deserialize<ArticlesRoot>(content, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
                     System.Console.WriteLine(articlesRoot.Status + " Artículos encontrados: " + articlesRoot.Articles.Count);
                     articles = articlesRoot.Articles;
@@ -84,10 +89,12 @@ namespace NewsAndFuture.Providers
                 {
                     Console.WriteLine("Request error");
                 }
+                
                 return articles;
             }
             catch (System.Exception ex)
             {
+                Console.WriteLine("something wrong with the request:" + ex.InnerException);
                 System.Console.WriteLine(ex.Message);
                 return null;
             }

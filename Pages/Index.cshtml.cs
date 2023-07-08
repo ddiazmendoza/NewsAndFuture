@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
@@ -15,30 +16,30 @@ namespace NewsAndFuture.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly INewsProvider newsProvider;
+        private INewsProvider newsProvider;
         public List<Article> TopHeadlines { get; set; }
-        public List<Article> CarouselItems { get; set; }
+        public List<Article> NewsHeadliners { get; set; }
 
         public IndexModel(INewsProvider newsProvider)
         {
             this.newsProvider = newsProvider;
+            NewsHeadliners = new List<Article>();
         }
-        public async Task<IActionResult> OnGet()
+
+        public async Task<IActionResult> OnGetAsync()
         {
             try
             {
-                CarouselItems = new List<Article>(await newsProvider.GetTopHeadlinesAsync("mx"));
+                NewsHeadliners = await newsProvider.GetTopHeadlinesAsync("mx");
                 //CarouselItems = await newsProvider.GetArticlesSearchAsync("es", "amlo");
+                return Page();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                throw;
+                return Page();
             }
-            
-            return Page();
-            
-           
+
         }
         
     }
