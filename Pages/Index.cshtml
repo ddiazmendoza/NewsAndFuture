@@ -4,19 +4,26 @@
     ViewData["Title"] = "Home page";
 }
 
+<h1>Headlines</h1>
+
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Enter search keyword" />
+    <button type="button" onclick="searchNews()">Search</button>
+</div>
+
 <div class="articles">
     @if (Model.Headlines != null)
     {
-        @foreach (var article in Model.Headlines)
+        @foreach (var headline in Model.Headlines)
         {
             <div class="article">
                 <div class="article-image">
-                    <img src="@article.UrlToImage" alt="@article.Title" />
+                    <img src="@headline.UrlToImage" alt="@headline.Title" />
                 </div>
                 <div class="article-content">
-                    <h2>@article.Title</h2>
-                    <p>@article.Description</p>
-                    <a href="@article.Url" target="_blank" rel="noopener noreferrer">Read more</a>
+                    <h2>@headline.Title</h2>
+                    <p>@headline.Description</p>
+                    <a href="@headline.Url" target="_blank" rel="noopener noreferrer">Read more</a>
                 </div>
             </div>
         }
@@ -26,3 +33,12 @@
         <p>Failed to retrieve headlines.</p>
     }
 </div>
+
+@section Scripts {
+    <script>
+        function searchNews() {
+            var searchInput = document.getElementById("searchInput").value;
+            window.location.href = "/Index?search=" + encodeURIComponent(searchInput);
+        }
+    </script>
+}

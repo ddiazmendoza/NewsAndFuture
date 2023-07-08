@@ -17,34 +17,34 @@ namespace NewsAndFuture.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly IHttpClientFactory _clientFactory;
+        private readonly INewsProvider _newsProvider;
 
-        public IndexModel(IHttpClientFactory clientFactory)
+        public IndexModel(INewsProvider newsProvider)
         {
-            _clientFactory = clientFactory;
+            _newsProvider = newsProvider;
         }
+
         public List<Article> Headlines { get; set; }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(string search)
         {
-            var client = _clientFactory.CreateClient();
-
-            var apiKey = "fb86b898844247fb9b0000140cc3838c"; // Replace with your NewsAPI API key
-            var url = $"https://newsapi.org/v2/top-headlines?country=us&apiKey={apiKey}";
-
-            var response = await client.GetAsync(url);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var content = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<NewsApiResponse>(content);
-
-                Headlines = result?.Articles;
+                if (!string.IsNullOrEmpty(search))
+                {
+                    var encodedSearch = Uri.EscapeDataString(search);
+                    Headlines = await _newsProvider.Search(encodedSearch);
+                }
+                else
+                {
+                    Headlines = await _newsProvider.GetHeadlines();
+                }
             }
-            else
+            catch (HttpRequestException)
             {
-                // Handle error case
+                // Handle 400 Bad Request error
                 Headlines = new List<Article>();
+                ModelState.AddModelError(string.Empty, "Error: Failed to retrieve headlines. Please try again later.");
             }
 
             return Page();

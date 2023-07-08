@@ -7,7 +7,6 @@ C:\Users\PC Gamer\source\repos\NewsAndFuture\bin\Debug\net7.0\NewsAndFuture.deps
 C:\Users\PC Gamer\source\repos\NewsAndFuture\bin\Debug\net7.0\NewsAndFuture.runtimeconfig.json
 C:\Users\PC Gamer\source\repos\NewsAndFuture\bin\Debug\net7.0\NewsAndFuture.dll
 C:\Users\PC Gamer\source\repos\NewsAndFuture\bin\Debug\net7.0\NewsAndFuture.pdb
-C:\Users\PC Gamer\source\repos\NewsAndFuture\bin\Debug\net7.0\NewsAPI.dll
 C:\Users\PC Gamer\source\repos\NewsAndFuture\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\PC Gamer\source\repos\NewsAndFuture\obj\Debug\net7.0\NewsAndFuture.csproj.AssemblyReference.cache
 C:\Users\PC Gamer\source\repos\NewsAndFuture\obj\Debug\net7.0\NewsAndFuture.GeneratedMSBuildEditorConfig.editorconfig
