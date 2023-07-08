@@ -1,101 +1,62 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using NewsAndFuture.Interfaces;
-using NewsAndFuture.Models;
-using System;
-using System.Collections;
+using NewsAPI.Constants;
+using NewsAPI.Models;
+using NewsAPI;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace NewsAndFuture.Providers
 {
     public class NewsProvider : INewsProvider
     {
-        private static readonly HttpClient client = new HttpClient()
+        private readonly string apiKey = "fb86b898844247fb9b0000140cc3838c";
+        private readonly NewsApiClient newsApiClient;
+
+        public NewsProvider(string apiKey)
         {
-            BaseAddress = new Uri(@"http://newsapi.org/v2/everything?")
-        };
-        public NewsProvider()
-        {
-            // Set the authorization headers and token
-            client.DefaultRequestHeaders.Add("X-Api-Key", "fb86b898844247fb9b0000140cc3838c");
+            this.apiKey = apiKey;
+            newsApiClient = new NewsApiClient(apiKey);
         }
-        public async Task<List<Article>> GetArticlesSearchAsync(string _lang, string _search)
+
+        public async Task<List<Article>> GetArticlesSearchAsync(Languages lang, string search)
         {
-            var q = _search;
-            var lang = _lang;
-            var from = DateTime.Now.ToShortDateString(); // Fecha actual
-            var url = client.BaseAddress;
-            var endpoint = url +
-            $"q={q}&" +
-            $"language={lang}&" +
-            $"from={from}&" +
-            "sortBy=popularity&" +
-            "apiKey=fb86b898844247fb9b0000140cc3838c";
-
-            try
+            var request = new EverythingRequest
             {
-                ArticlesRoot answer = new();
-                string request = await client.GetStringAsync(endpoint);
+                Language = Languages.ES,
+                Q = search
+            };
 
-                if (request != null)
-                {
+            var response = await newsApiClient.GetEverythingAsync(request);
 
-                    answer = JsonSerializer.Deserialize<ArticlesRoot>(request, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
-                    System.Console.WriteLine(answer.Status + " Found articles: " + answer.Articles.Count);
-                    return new List<Article>(answer.Articles);
-                }
-
-                else
-                {
-                    Console.WriteLine("Request error" + request);
-                    Console.WriteLine(request.ToString());
-                    return null;
-                }
-
+            if (response.Status == Statuses.Ok)
+            {
+                return response.Articles;
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e.Message);
+                // Handle error case
                 return null;
             }
         }
-        public async Task<List<Article>> GetTopHeadlinesAsync(string country)
-        {      
-            var url = @"http://newsapi.org/v2/top-headlines?";
-            var endpoint = url +
-                $"country={country}&" +
-                "sortBy=popularity";
-            try
+
+        public async Task<List<Article>> GetTopHeadlinesAsync(Countries country)
+        {
+            var request = new TopHeadlinesRequest
             {
+                Country = country
+            };
 
-                var request = await client.GetAsync(endpoint).ConfigureAwait(false);
-                
-                var articles = new List<Article>();
-                //// Deserialize the response string directly
-                //var articlesRoot = JsonSerializer.Deserialize<ArticlesRoot>(response, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            var response = await newsApiClient.GetTopHeadlinesAsync(request);
 
-                if (request.IsSuccessStatusCode)
-                {
-                    var content = await request.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    var articlesRoot = JsonSerializer.Deserialize<ArticlesRoot>(content, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
-                    System.Console.WriteLine(articlesRoot.Status + " Artículos encontrados: " + articlesRoot.Articles.Count);
-                    articles = articlesRoot.Articles;
-                }
-                else
-                {
-                    Console.WriteLine("Request error");
-                }
-                
-                return articles;
+            if (response.Status == Statuses.Ok)
+            {
+                return response.Articles;
             }
-            catch (System.Exception ex)
+            else
             {
-                Console.WriteLine("something wrong with the request:" + ex.InnerException);
-                System.Console.WriteLine(ex.Message);
+                // Handle error case
                 return null;
             }
         }

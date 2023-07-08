@@ -11,36 +11,43 @@ using Microsoft.Extensions.Logging;
 using NewsAndFuture.Interfaces;
 using NewsAndFuture.Models;
 using NewsAndFuture.Providers;
+using Newtonsoft.Json;
 
 namespace NewsAndFuture.Pages
 {
     public class IndexModel : PageModel
     {
-        private INewsProvider newsProvider;
-        public List<Article> TopHeadlines { get; set; }
-        public List<Article> NewsHeadliners { get; set; }
+        private readonly IHttpClientFactory _clientFactory;
 
-        public IndexModel(INewsProvider newsProvider)
+        public IndexModel(IHttpClientFactory clientFactory)
         {
-            this.newsProvider = newsProvider;
-            NewsHeadliners = new List<Article>();
+            _clientFactory = clientFactory;
         }
+        public List<Article> Headlines { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            try
+            var client = _clientFactory.CreateClient();
+
+            var apiKey = "fb86b898844247fb9b0000140cc3838c"; // Replace with your NewsAPI API key
+            var url = $"https://newsapi.org/v2/top-headlines?country=us&apiKey={apiKey}";
+
+            var response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
             {
-                NewsHeadliners = await newsProvider.GetTopHeadlinesAsync("mx");
-                //CarouselItems = await newsProvider.GetArticlesSearchAsync("es", "amlo");
-                return Page();
+                var content = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<NewsApiResponse>(content);
+
+                Headlines = result?.Articles;
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e.Message);
-                return Page();
+                // Handle error case
+                Headlines = new List<Article>();
             }
 
+            return Page();
         }
-        
     }
 }
